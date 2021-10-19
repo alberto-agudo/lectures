@@ -1,10 +1,9 @@
 def my_func(val):
     print('She said: "' + str(val) + '"')
 
-
 def bisec_search(x, epsilon):
     """Assumes x and epsilon are numeric.
-    Finds an approximation to the square root 
+    Finds an approximation to the square root
     of a number x using bisection search.
     """
 
@@ -13,7 +12,7 @@ def bisec_search(x, epsilon):
     high = max(1, x)
 
     # Start in the middle
-    guess = (low + high) / 2 
+    guess = (low + high) / 2
 
     # Narrow down search interval until guess close enough
     while abs(guess**2 - x) >= epsilon:
@@ -22,15 +21,14 @@ def bisec_search(x, epsilon):
         else:
             high = guess
         guess = (low + high) / 2
-        
+
     return guess
 
-
 def bisec_search_rec(low, high, x, epsilon):
-    
+
     # Start in the middle of the interval
     guess = (low + high) / 2
-    
+
     if abs(guess**2 - x) < epsilon:
         return guess
     else:
