@@ -13,6 +13,8 @@ class TestRunningSum(unittest.TestCase):
         tools.running_sum(inputted)
         output_expected = []
         self.assertEqual(output_expected, inputted, "The list is empty.")
+        # self.assertEqual is a method of the TestCase superclass that compares two objects and
+        # shows whether they are equal or not.
 
     def test_running_sum_one(self):
         '''Test a one-item list.'''
@@ -58,3 +60,4 @@ class TestRunningSum(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    # Unittest.main() is a function to run all tests in the script.

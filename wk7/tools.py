@@ -11,6 +11,9 @@ def running_sum(ls):
     E.g., running_sum([1, 2, 3]) becomes [1, 3, 6].'''
     for i in range(len(ls)):
         ls[i] = ls[i - 1] + ls[i]
+        
+    # The way to solve this issue is by using range(1, len(ls)), since the i-1 was generating the problems 
+    #(if i == 0 then we would be selecting the last element of the list instead of the first one).
 
 if __name__ == '__main__':
     main()
