@@ -5,6 +5,9 @@ def main():
     ls = [1, 2, 3]
     running_sum(ls)
     print('Running sum of [1, 2, 3] is:', ls)
+    
+# Here the content of the main() function is personalized. 
+# You can run running_sum within the def main() function because it is not executed until the end.
 
 def running_sum(ls):
     '''Modify ls so that it contains the running sums of its original items.

@@ -4,6 +4,9 @@
 import unittest
 import tools
 
+# Inheriting because of unittest.main()
+# You should know whether you need to import a module or if it is already imported from another intermediate module.
+# You will mostly use the TestCase class.
 class TestRunningSum(unittest.TestCase):
     '''Tests for running_sum.'''
 
@@ -11,6 +14,7 @@ class TestRunningSum(unittest.TestCase):
         '''Test an empty list.'''
         inputted = []
         tools.running_sum(inputted)
+        # Inputted is modified in place.
         output_expected = []
         self.assertEqual(output_expected, inputted, "The list is empty.")
 
@@ -58,4 +62,8 @@ class TestRunningSum(unittest.TestCase):
 
 # Run the code above.
 if __name__ == '__main__':
+    # Here you use a special unittest case.
+    # It is a very specific way of running the script that allows you to 
+    # keep on running the code while the errors are raised. 
     unittest.main()
+
