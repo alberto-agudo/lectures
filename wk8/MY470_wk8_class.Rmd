@@ -136,6 +136,8 @@ import random
 
 ```
 
+If you need to change to R later, tell the Python kernel to quit. 
+
 Note that when we change what language we are using, the variables and objects we see in the Enviroment panel change.
 
 ### Working with the basic functionality of R
@@ -166,7 +168,7 @@ x <- 5
 y <- 10
 ```
 
-If you look at the `Environment` panel in your RStudio session, you can see that these numbers are stored in memory. If you click on the widow, or double-click, can can even see entire .csv's. 
+If you look at the `Environment` panel in your RStudio session, you can see that these numbers are stored in memory. If you click on the window, or double-click, can can even see entire .csv's. 
 
 Then you can do operations with them, the same way you would do with numbers:
 
@@ -244,7 +246,7 @@ There are a few special values: `NA`, which denotes a missing value, and `NaN`, 
 x <- c(1, NA, 0)
 ```
 
-Probably one of the most useful functions in R is `str`. It displays the internal structure of an object. Be careful here as `str` in python refers to string datatypes.
+Probably one of the most useful functions in R is `str`. It displays the internal structure of an object. **Be careful here as `str` in python refers to string datatypes.**
 
 ```{r}
 str(x)
@@ -333,6 +335,7 @@ math_scores[1:3]
 # Remove by index
 math_scores[-(4:5)]
 # Filter by a condition
+#which returns you the indices, since you are subsetting based on a different table. 
 math_scores[which(verbal_scores >= 90)]
 # Set a value
 math_scores[3] <- 92
@@ -357,6 +360,7 @@ summary(students)
 Notice that `student_names` is a different class (character) than `math_scores` (numeric), yet a data frame combines their values into a single object. We can also create data frames that include new variables:
 
 ```{r}
+# Recycle values. 
 students$final_scores <- 0
 
 # Fill column based on corresponding row values
@@ -373,6 +377,8 @@ students3 <- merge(students, students2)
 
 students3
 ```
+
+
 
 #### Lists
 
@@ -409,7 +415,7 @@ schools$students
 You have now explored control flow in dept in python. In R the loop constructs are `for`, `while` and `repeat`, with the additional clauses `break` and `next`. Remember that control flow commands are the commands that enable a program to branch between alternatives. You can always see these control flow commands by invoking `?Control` at the RStudio command line.
 
 ```{r}
-# ?Control
+?Control
 ```
 
  Like in python, a for loop is used for iterating. Below we can see the same output but in the two languages.
@@ -423,9 +429,9 @@ for i in range(1,11):
 ```{r}
 # Expression in brackets and code block in curly braces.
 # we also don't use the colon.
-for (x in 1:10) {
+for (x in 1:10) 
   print(x)
-}
+
 ```
 
  In R you can also puth this on a singular line.
@@ -484,6 +490,7 @@ Let's look at a more practical example.
 ```{r}
 addPercent <- function(x){
   
+  # This would act as the docstring. 
   # Takes the raw numeric material and returns a percentages.
   
  percent <- round(x * 100, digits = 1)
@@ -502,12 +509,16 @@ The steps here are:
 
 Using the function:
 ```{r}
-# Normally distributed positive values
+# 100 normally distributed positive values
 n <- abs(rnorm(100))
 
 # Calling our function
 addPercent(n)
 ```
+
+
+How to create new variables within a for loop which make reference to the current iteration. In Python you can use "variable_" + i. But in R paste0("variable", i) returns an error:
+  You should use a list.
 
 #### Loop Exercises
 
