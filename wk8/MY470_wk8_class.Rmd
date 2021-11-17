@@ -20,7 +20,7 @@ Today, we will be switching to looking at R.
 _The question isn’t whether to choose python or R, but how to make the best use of both programming languages for your_ **specific use cases.**
 
 ## What is R Markdown? (.Rmd)
-R Markdown provides an unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of output formats, like PDFs, Word files, slideshows, and more.
+R Markdown provides a unified authoring framework for data science, combining your code, its results, and your prose commentary. R Markdown documents are fully reproducible and support dozens of output formats, like PDFs, Word files, slideshows, and more.
 
 R Markdown files are designed to be used in three ways:
 
@@ -130,6 +130,7 @@ We can set the language of a code chunk, by specifying "r" or "python" in the cu
 ```{python}
 # Importing modules.
 
+#py_install("pandas")
 import pandas as pd
 import numpy as np
 import random
@@ -216,7 +217,7 @@ In R, there’s no difference between a variable (`my.list`) and the object asso
 
 In Python, variables and the objects they point two actually live in two different places in your computer. As a result, in Python it’s best to think of variables as pointing to the objects they’re associated with, rather than being those objects
 
-The reason this matters is that it’s possible for multiple variables to be pointed at the same object. As a result, changes made to an object though one variable will impact what you get if you call the other variables pointed at that object!
+The reason this matters is that it’s possible for multiple variables to be pointed at the same object. As a result, changes made to an object through one variable will impact what you get if you call the other variables pointed at that object!
 
 
 ### Data types
@@ -412,7 +413,7 @@ schools$students
 
 ### Control Flow and Functions 
 
-You have now explored control flow in dept in python. In R the loop constructs are `for`, `while` and `repeat`, with the additional clauses `break` and `next`. Remember that control flow commands are the commands that enable a program to branch between alternatives. You can always see these control flow commands by invoking `?Control` at the RStudio command line.
+You have now explored control flow in depth in python. In R the loop constructs are `for`, `while` and `repeat`, with the additional clauses `break` and `next`. Remember that control flow commands are the commands that enable a program to branch between alternatives. You can always see these control flow commands by invoking `?Control` at the RStudio command line.
 
 ```{r}
 ?Control
@@ -422,19 +423,20 @@ You have now explored control flow in dept in python. In R the loop constructs a
 
 ```{python}
 
-for i in range(1,11):
+for i in range(1,11):{
   print(i)
+  }
 ```
 
 ```{r}
 # Expression in brackets and code block in curly braces.
 # we also don't use the colon.
-for (x in 1:10) 
+for (x in 1:10) {
   print(x)
-
+}
 ```
 
- In R you can also puth this on a singular line.
+ In R you can also put this on a singular line.
  
 ```{r}
 
@@ -522,7 +524,7 @@ How to create new variables within a for loop which make reference to the curren
 
 #### Loop Exercises
 
-Below are the for loops from class in Week 03. For each loop, create a chuck in R and translate the python code into R.
+Below are the for loops from class in Week 03. For each loop, create a chunk in R and translate the python code into R.
 
 ```{python}
 # Exercise 1: We create an empty list. Then use a for-loop and range(1, 101) 
@@ -540,6 +542,18 @@ print(ls)
 ```
 
 _Your cell here._
+```{r}
+ls = integer()
+for (i in 1:100) {
+  if (i %% 3 == 0) {
+    ls[i] <- NA
+  } else {
+    ls[i] <- i
+  }
+}
+print(ls)
+```
+
 
 ```{python}
 # Exercise 2: Use a for-loop with if-statement to identify the even integers.
@@ -556,6 +570,18 @@ print(summ)
 ```
 
 _Your cell here._
+```{r}
+lst <- c(1, 3, 2, 4.5, 7, 8, 10, 3, 5, 4, 7, 3.33)
+
+summ <- 0
+for (i in lst) {
+  if (i %% 2 == 0) {
+    summ <- summ + i
+  }
+}
+print(summ)
+```
+
 
 #### Functions Exercises
 
@@ -583,6 +609,20 @@ print(zerolist)
 ```
 
 _Your cell here._
+```{r}
+zero_list <- function(alist) {
+  newlist <- integer(length = length(alist))
+}
+
+mylist <- c(1, 2, 3)
+
+zerolist <- zero_list(mylist)
+
+print(mylist)
+print(zerolist)
+
+```
+
 
 ```{python}
 
@@ -605,6 +645,20 @@ print_professions(scientists)
 ```
 
 _Your cell here._
+```{r}
+scientists <- c("mathematician", "physicist", "chemist", "biologist", "mathematician", "physicist")
+names(scientists) <- c('Alan Turing', 'Richard Feynman', 'Marie Curie', 'Charles Darwin',
+              'Ada Lovelace', 'Werner Heisenberg')
+
+print_professions <- function(science_vector) {
+  for (i in 1:length(science_vector)) {
+    print(paste0(names(science_vector)[i], " was a ", science_vector[i], "."))
+  }
+}
+
+print_professions(scientists)
+```
+
 
 ### Vectorizing
 
@@ -631,7 +685,7 @@ v2 <- 100:149
 
 # Replicate
 v3 <- rep(0)
-# loop through first 10 values
+# loop through first 50 values
 for (i in 1:n) { 
 	v3[i] <-v1[i] + v2[i] 
 }
@@ -666,6 +720,12 @@ ans = [i**2 for i in lst if type(i) == int]
 ```
 
 _Your cell here._
+```{r}
+lst <- c(1, 3, 2, 4.5, 7, 8 , 10, 3, 5, 4, 7, 3.33)
+ans <- lst[!lst %% 1] ^ 2
+print(ans)
+```
+
 
 ```{python}
 # Exercise 6: Using the function ifelse(), replicate the list
@@ -678,12 +738,18 @@ y = ["Positive" if i > 0 else "Neagtive" for i in x]
 ```
 
 _Your cell here._
+```{r}
+x <- rnorm(100)
+y <- ifelse(x > 0, "Positive", "Negative")
+print(y)
+```
+
 
 Let’s look at the idea of “growing data”, a typically inefficient way of “updating” a data frame.
 
 First you create an m x n matrix with `replicate(m, rnorm(n))` with 10 column vectors of 10 elements each, constructed with `rnorm(n)`, which creates random normal numbers.
 
-Then you transform it into a data frame (10 observations/rows of 10 variables/columns) and perform an algebraic operation on each element using a nested for loop: at each iteration, a sinusoidal function increments every element that is referred by the two indexes. This allows us to add some noice to the data, which is a common practice in modelling.
+Then you transform it into a data frame (10 observations/rows of 10 variables/columns) and perform an algebraic operation on each element using a nested for loop: at each iteration, a sinusoidal function increments every element that is referred by the two indexes. This allows us to add some noise to the data, which is a common practice in modelling.
 
 The following example is a bit artificial, but it could represent the addition of a signal to some random noise.
 
@@ -712,12 +778,34 @@ for (i in 1:m) {
     # For row, column, add some noise.
     mydframe[i,j] <- mydframe[i,j] + 10*sin(0.75*pi)
     
-    print(mydframe)
+    
   }
 }
+
+mydframe
 ```
 
 _Your cell here._
+```{r}
+set.seed(42)
+
+m <- 10
+n <- 10
+
+# Create matrix of normal random numbers
+# replicate(num_of_replications, expression to evaluate)
+# 10 x 10 normally distributed matrix.
+mymat <- replicate(m, rnorm(n))
+
+# Transform into data frame
+mydframe <- data.frame(mymat)
+
+# Same result only with this operation.
+mydframe <- mydframe + 10*sin(0.75*pi)
+
+mydframe
+```
+
 
 
 # BONUS
@@ -745,6 +833,24 @@ Using the sample data specified below, use `?` with `apply()` to complete the st
 
 # Data frame
 sample.df <- data.frame(x = 1:4, y = 5:8, z = 10:13)
+
+# 1
+sample.df$means <- apply(sample.df, MARGIN = 1, FUN = mean)
+
+# 2
+sample.df <- rbind(sample.df, apply(sample.df, MARGIN = 2, FUN = sum))
+
+# 3
+fun <- function(x, character = TRUE) {
+  squared <- x ^ 2
+  if (character == TRUE) {
+    return(as.character(squared))
+  }
+  
+  return(squared)
+}
+
+apply(sample.df, MARGIN = c(1, 2) , FUN = fun)
 
 ```
 
